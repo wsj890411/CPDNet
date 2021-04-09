@@ -39,27 +39,59 @@ Material related to our paper is available via the following links:
 * TensowFlow 1.14.0 or newer with GPU support.
 * One or more high-end NVIDIA GPUs with at least 8GB of DRAM.
 
+## Dataset
+
+Download (Dropbox):   https://www.dropbox.com/s/4t3hw6i9tb0nvh2/OL.zip?dl=0
+
+The downloaded and unzipped polarized color images should be organized as follows:
+
+```
+data_root
+    |-- Train
+        |-- train_dataset
+            |-- image-ID
+            	|-- gt_0
+            		|-- image-ID.png
+                |-- gt_45
+            		|-- image-ID.png
+            	|-- gt_90
+            		|-- image-ID.png
+            	|-- gt_135
+            		|-- image-ID.png
+            	|-- net_input
+            		|-- image-ID.png
+            ...
+    |-- Test
+        |-- test_dataset
+            |-- image-ID
+            	|-- gt_0
+            		|-- image-ID.png
+                |-- gt_45
+            		|-- image-ID.png
+            	|-- gt_90
+            		|-- image-ID.png
+            	|-- gt_135
+            		|-- image-ID.png
+            	|-- net_input
+            		|-- image-ID.png
+            ...
+         |-- polarized_dataset
+         |-- real_captured
+```
+
 ## Playing with pre-trained networks and training
 
 ### Test
 
-1. Download the pretrained model, and put them to the `pretrained_model` dir
-2. Run the command below to decompose images into albedo and shading
+1. The pretrained model is provided in `./OL_CPDNET_mse_ssim_gra_stoke/checkpoint/OL_final/`
+2. One can modify the configuration in `./OL_CPDNET_mse_ssim_gra_stoke/main.py`
 
-```bash
-python3 test.py -c configs/intrinsic_MPI.yaml -i /your/test/images/root/ -o ./results/ -p /pretrained_model/MPI.pt
-```
-
-Then then results will be generated in the `./results` dir.
+Then then results will be generated in the `./OL_CPDNET_mse_ssim_gra_stoke/results` dir.
 
 ### Train
 1. Download the dataset to your `<your_dataset_root>`.
-2. Midify the `data_root` to `<your_dataset_root>` in the `*.yaml` in the `./configs`.
-3. Run the commands below to train the model.
-
-```bash
-python3 train.py -c configs/intrinsic_MPI.yaml -o ./checkpoints/ -g <your gpu id>
-```
+2. Split the dataset and organize them in `OL_CPDNET_DATA`
+3. One can modify the configuration in `./OL_CPDNET_mse_ssim_gra_stoke/main.py`
 
 ## Citation
 

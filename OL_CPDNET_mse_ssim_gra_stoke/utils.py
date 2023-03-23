@@ -339,7 +339,7 @@ def get_rgb(raw, w, h):
     img_g = raw[:, :, 0] * mask_0 + raw[:, :, 3] * mask_45 + raw[:, :, 6] * mask_90 + raw[:, :, 9] * mask_135
     img_b = raw[:, :, 1] * mask_0 + raw[:, :, 4] * mask_45 + raw[:, :, 7] * mask_90 + raw[:, :, 10] * mask_135
     img_r = raw[:, :, 2] * mask_0 + raw[:, :, 5] * mask_45 + raw[:, :, 8] * mask_90 + raw[:, :, 11] * mask_135
-    rgb = np.stack([img_r, img_b, img_r], 2)
+    rgb = np.stack([img_g, img_b, img_r], 2)
 
     return rgb
 
